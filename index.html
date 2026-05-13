@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thanigasalam M — Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --font-display:'Outfit',sans-serif;
+  --font-mono:'Space Mono',monospace;
+  --glass-bg:rgba(255,255,255,0.1);
+  --glass-border:rgba(255,255,255,0.25);
+  --glass-bg2:rgba(255,255,255,0.07);
+  --white:#ffffff;
+  --white80:rgba(255,255,255,0.8);
+  --white50:rgba(255,255,255,0.5);
+  --white30:rgba(255,255,255,0.3);
+  --white15:rgba(255,255,255,0.15);
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:var(--font-display);
+  font-weight:300;
+  font-size:15px;
+  line-height:1.7;
+  overflow-x:hidden;
+  background:#0f0520;
+  color:#fff;
+  min-height:100vh;
+}
+
+/* BACKGROUND */
+.bg-orbs{
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  z-index:0;pointer-events:none;overflow:hidden;
+}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.55;}
+.orb1{width:600px;height:600px;background:#7c3aed;top:-100px;left:-150px;animation:drift1 12s ease-in-out infinite alternate;}
+.orb2{width:500px;height:500px;background:#db2777;top:20%;right:-100px;animation:drift2 15s ease-in-out infinite alternate;}
+.orb3{width:450px;height:450px;background:#2563eb;bottom:10%;left:20%;animation:drift3 10s ease-in-out infinite alternate;}
+.orb4{width:350px;height:350px;background:#0891b2;bottom:-80px;right:10%;animation:drift1 13s ease-in-out infinite alternate-reverse;}
+
+@keyframes drift1{from{transform:translate(0,0)}to{transform:translate(40px,30px)}}
+@keyframes drift2{from{transform:translate(0,0)}to{transform:translate(-30px,50px)}}
+@keyframes drift3{from{transform:translate(0,0)}to{transform:translate(50px,-30px)}}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 4rem;
+  background:rgba(15,5,32,0.5);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--glass-border);
+}
+.nav-logo{
+  font-family:var(--font-display);
+  font-weight:800;font-size:1.2rem;
+  background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{
+  color:var(--white50);text-decoration:none;
+  font-size:0.82rem;font-weight:400;letter-spacing:0.06em;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:#fff;}
+
+/* GLASS CARD UTILITY */
+.glass{
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-radius:20px;
+}
+.glass2{
+  background:var(--glass-bg2);
+  border:1px solid rgba(255,255,255,0.12);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-radius:14px;
+}
+
+/* HERO */
+.hero{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:8rem 4rem 4rem;
+  text-align:center;
+}
+.hero-inner{max-width:800px;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--white80);
+  background:rgba(255,255,255,0.1);
+  border:1px solid var(--glass-border);
+  backdrop-filter:blur(10px);
+  padding:0.4rem 1.2rem;border-radius:50px;
+  margin-bottom:2rem;
+}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+
+.hero-name{
+  font-weight:800;
+  font-size:clamp(3.5rem,8vw,6.5rem);
+  line-height:1;letter-spacing:-0.03em;
+  margin-bottom:0.5rem;
+  background:linear-gradient(135deg,#fff 30%,#c4b5fd 60%,#f9a8d4);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-role{
+  font-size:clamp(1.1rem,2.5vw,1.5rem);
+  font-weight:300;color:var(--white80);
+  margin-bottom:2.5rem;letter-spacing:0.02em;
+}
+.hero-role span{
+  font-weight:600;
+  background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:4rem;}
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:0.75rem 1.8rem;
+  font-family:var(--font-display);font-size:0.85rem;font-weight:600;
+  text-decoration:none;border-radius:50px;
+  transition:all 0.25s;cursor:pointer;letter-spacing:0.02em;
+}
+.btn-primary{
+  background:linear-gradient(135deg,#7c3aed,#db2777);
+  color:#fff;border:none;
+}
+.btn-primary:hover{opacity:0.85;transform:translateY(-2px);}
+.btn-glass{
+  background:rgba(255,255,255,0.1);
+  border:1px solid var(--glass-border);
+  color:#fff;backdrop-filter:blur(10px);
+}
+.btn-glass:hover{background:rgba(255,255,255,0.2);transform:translateY(-2px);}
+
+.hero-stats{
+  display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;
+}
+.stat-card{
+  padding:1.5rem 2rem;
+  text-align:center;min-width:130px;
+}
+.stat-num{
+  font-weight:800;font-size:2rem;
+  background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  display:block;line-height:1;
+}
+.stat-label{font-size:0.72rem;color:var(--white50);letter-spacing:0.08em;text-transform:uppercase;margin-top:0.4rem;}
+
+/* SECTIONS */
+section{position:relative;z-index:1;padding:6rem 4rem;}
+.section-tag{
+  font-family:var(--font-mono);
+  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:#a78bfa;margin-bottom:0.8rem;
+}
+h2{
+  font-weight:800;font-size:clamp(2rem,4vw,3rem);
+  letter-spacing:-0.02em;line-height:1.1;
+  margin-bottom:3rem;
+  background:linear-gradient(135deg,#fff,#c4b5fd);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:2rem;align-items:start;}
+.about-card{padding:2.5rem;}
+.about-text p{color:var(--white80);margin-bottom:1.1rem;line-height:1.9;font-size:0.95rem;}
+.about-text p strong{color:#fff;font-weight:600;}
+.about-quote{
+  font-size:1.15rem;font-weight:300;font-style:italic;
+  color:var(--white80);
+  border-left:3px solid #a78bfa;
+  padding-left:1.2rem;margin:1.5rem 0;
+  line-height:1.7;
+}
+.info-card{padding:2rem;}
+.info-row{
+  display:flex;flex-direction:column;
+  padding:0.9rem 0;border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.info-row:last-child{border-bottom:none;}
+.info-key{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#a78bfa;margin-bottom:0.2rem;}
+.info-val{color:#fff;font-size:0.88rem;}
+.info-val a{color:#f9a8d4;text-decoration:none;}
+.info-val a:hover{text-decoration:underline;}
+
+/* SKILLS */
+.skills-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+.skill-card{padding:1.8rem;transition:transform 0.2s,border-color 0.2s;}
+.skill-card:hover{transform:translateY(-5px);border-color:rgba(167,139,250,0.5);}
+.skill-icon{font-size:1.8rem;margin-bottom:1rem;}
+.skill-title{font-weight:700;font-size:1rem;margin-bottom:0.4rem;color:#fff;}
+.skill-desc{font-size:0.8rem;color:var(--white50);margin-bottom:1rem;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.stag{
+  font-size:0.68rem;padding:0.2rem 0.7rem;border-radius:50px;
+  background:rgba(167,139,250,0.15);border:1px solid rgba(167,139,250,0.3);
+  color:#c4b5fd;
+}
+
+/* PROJECTS */
+.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
+.project-card{padding:2rem;transition:transform 0.2s,border-color 0.2s;display:flex;flex-direction:column;}
+.project-card:hover{transform:translateY(-6px);border-color:rgba(244,114,182,0.4);}
+.project-num{font-family:var(--font-mono);font-size:0.68rem;color:#f472b6;letter-spacing:0.15em;margin-bottom:0.8rem;}
+.project-title{font-weight:700;font-size:1.1rem;color:#fff;margin-bottom:0.8rem;line-height:1.3;}
+.project-desc{font-size:0.83rem;color:var(--white80);line-height:1.7;flex:1;}
+.project-metrics{margin-top:1.2rem;display:flex;flex-wrap:wrap;gap:0.5rem;}
+.metric{
+  font-size:0.68rem;padding:0.25rem 0.8rem;border-radius:50px;
+  background:rgba(244,114,182,0.12);border:1px solid rgba(244,114,182,0.25);
+  color:#f9a8d4;
+}
+.project-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:1.5rem;padding-top:1.2rem;
+  border-top:1px solid rgba(255,255,255,0.1);
+  flex-wrap:wrap;gap:0.5rem;
+}
+.project-stack{display:flex;gap:0.4rem;flex-wrap:wrap;}
+.ptag{
+  font-size:0.65rem;padding:0.2rem 0.6rem;border-radius:4px;
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+  color:var(--white50);
+}
+.project-link{font-size:0.78rem;color:#a78bfa;text-decoration:none;transition:color 0.2s;}
+.project-link:hover{color:#f472b6;}
+
+/* CERTS */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;}
+.cert-card{padding:1.5rem;transition:transform 0.2s;}
+.cert-card:hover{transform:translateY(-4px);}
+.cert-issuer{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#818cf8;margin-bottom:0.5rem;}
+.cert-name{font-size:0.88rem;color:#fff;line-height:1.4;}
+.cert-year{font-size:0.72rem;color:var(--white50);margin-top:0.5rem;}
+
+/* CONTACT */
+.contact-center{text-align:center;max-width:600px;margin:0 auto;}
+.contact-center p{color:var(--white80);margin-bottom:2.5rem;font-size:0.95rem;line-height:1.8;}
+.contact-email{
+  display:block;
+  font-weight:700;font-size:clamp(1.3rem,3vw,2rem);
+  background:linear-gradient(135deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  text-decoration:none;margin-bottom:2.5rem;
+  transition:opacity 0.2s;
+}
+.contact-email:hover{opacity:0.7;}
+.social-row{display:flex;justify-content:center;gap:1rem;}
+
+/* FOOTER */
+footer{
+  position:relative;z-index:1;
+  padding:1.5rem 4rem;
+  border-top:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:0.72rem;color:var(--white30);
+  font-family:var(--font-mono);
+}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-delay1{transition-delay:0.1s;}
+.reveal-delay2{transition-delay:0.2s;}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{display:none;}
+  section{padding:4rem 1.5rem;}
+  .hero{padding:7rem 1.5rem 3rem;}
+  .about-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:0.5rem;padding:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-orbs">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="orb orb4"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">TM.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Available for hire · Fresher Data Analyst
+    </div>
+    <div class="hero-name">Thanigasalam M.</div>
+    <div class="hero-role">
+      <span>Data Analyst</span> · Python Developer · Business Intelligence
+    </div>
+    <div class="hero-btns">
+      <a href="mailto:thanigas50@gmail.com" class="btn btn-primary">Get in touch</a>
+      <a href="https://github.com/thanigasalam" target="_blank" class="btn btn-glass">GitHub ↗</a>
+      <a href="https://linkedin.com/in/thanigasalam" target="_blank" class="btn btn-glass">LinkedIn ↗</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card glass">
+        <span class="stat-num">4</span>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div class="stat-card glass">
+        <span class="stat-num">1M+</span>
+        <div class="stat-label">Rows analysed</div>
+      </div>
+      <div class="stat-card glass">
+        <span class="stat-num">60%</span>
+        <div class="stat-label">Reporting saved</div>
+      </div>
+      <div class="stat-card glass">
+        <span class="stat-num">4+</span>
+        <div class="stat-label">Certifications</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-tag">01 — About</div>
+    <h2>Who I am</h2>
+    <div class="about-grid">
+      <div class="about-card glass">
+        <div class="about-text">
+          <p>I'm a <strong>Statistics graduate</strong> from Arignar Anna Arts College, Villupuram with a strong foundation in data analytics, statistical modelling, and business intelligence.</p>
+          <p>My toolkit covers the <strong>complete data pipeline</strong> — from raw collection and ETL processing to exploratory analysis, statistical modelling, and interactive dashboard design.</p>
+          <div class="about-quote">"I'm driven by the belief that every dataset has a story worth telling clearly."</div>
+          <p>Seeking a <strong>fresher Data Analyst role</strong> in a growth-oriented MNC where I can apply my skills and grow at the intersection of data and business strategy.</p>
+        </div>
+      </div>
+      <div class="info-card glass">
+        <div class="info-row">
+          <span class="info-key">Location</span>
+          <span class="info-val">Villupuram, Tamil Nadu — 605602</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Education</span>
+          <span class="info-val">B.Sc. Statistics · CGPA 7.0</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Phone</span>
+          <span class="info-val">+91-7418533097</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Email</span>
+          <span class="info-val"><a href="mailto:thanigas50@gmail.com">thanigas50@gmail.com</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">LinkedIn</span>
+          <span class="info-val"><a href="https://linkedin.com/in/thanigasalam" target="_blank">thanigasalam ↗</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">GitHub</span>
+          <span class="info-val"><a href="https://github.com/thanigasalam" target="_blank">thanigasalam ↗</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Languages</span>
+          <span class="info-val">Tamil (Native) · English (Professional)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Hobbies</span>
+          <span class="info-val">Cricket · Music</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <div class="section-tag">02 — Skills</div>
+    <h2>What I work with</h2>
+    <div class="skills-wrap">
+      <div class="skill-card glass2">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-title">Programming</div>
+        <div class="skill-desc">Core languages for data manipulation & analysis</div>
+        <div class="skill-tags">
+          <span class="stag">Python</span><span class="stag">SQL</span>
+          <span class="stag">Pandas</span><span class="stag">NumPy</span>
+        </div>
+      </div>
+      <div class="skill-card glass2">
+        <div class="skill-icon">📊</div>
+        <div class="skill-title">BI & Visualisation</div>
+        <div class="skill-desc">Dashboard design and data storytelling</div>
+        <div class="skill-tags">
+          <span class="stag">Power BI</span><span class="stag">Tableau</span>
+          <span class="stag">Matplotlib</span><span class="stag">Seaborn</span>
+          <span class="stag">Excel</span>
+        </div>
+      </div>
+      <div class="skill-card glass2">
+        <div class="skill-icon">🗄️</div>
+        <div class="skill-title">Databases</div>
+        <div class="skill-desc">Relational database querying & management</div>
+        <div class="skill-tags">
+          <span class="stag">MySQL</span><span class="stag">PostgreSQL</span>
+          <span class="stag">Oracle SQL</span>
+        </div>
+      </div>
+      <div class="skill-card glass2">
+        <div class="skill-icon">⚙️</div>
+        <div class="skill-title">Data Skills</div>
+        <div class="skill-desc">End-to-end analytics pipeline expertise</div>
+        <div class="skill-tags">
+          <span class="stag">ETL</span><span class="stag">EDA</span>
+          <span class="stag">Feature Engineering</span>
+          <span class="stag">Hypothesis Testing</span>
+          <span class="stag">KPI Reporting</span>
+        </div>
+      </div>
+      <div class="skill-card glass2">
+        <div class="skill-icon">🛠️</div>
+        <div class="skill-title">Dev Tools</div>
+        <div class="skill-desc">Development & version control environment</div>
+        <div class="skill-tags">
+          <span class="stag">Jupyter</span><span class="stag">VS Code</span>
+          <span class="stag">Git</span><span class="stag">GitHub</span>
+          <span class="stag">Linux</span>
+        </div>
+      </div>
+      <div class="skill-card glass2">
+        <div class="skill-icon">📐</div>
+        <div class="skill-title">Statistics</div>
+        <div class="skill-desc">Academic foundation in quantitative methods</div>
+        <div class="skill-tags">
+          <span class="stag">Regression Analysis</span>
+          <span class="stag">Time Series</span>
+          <span class="stag">Sampling Theory</span>
+          <span class="stag">Linear Algebra</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="reveal">
+    <div class="section-tag">03 — Projects</div>
+    <h2>Things I've built</h2>
+    <div class="project-grid">
+
+      <div class="project-card glass">
+        <div class="project-num">Project 01</div>
+        <div class="project-title">Adidas Sales Performance Dashboard</div>
+        <div class="project-desc">Analysed 9,600+ rows of Adidas sales across 6 US regions. Built an interactive Power BI dashboard with dynamic slicers, KPI cards, and automated pivot table generation using Python.</div>
+        <div class="project-metrics">
+          <span class="metric">34% top region revenue</span>
+          <span class="metric">60% reporting time saved</span>
+        </div>
+        <div class="project-footer">
+          <div class="project-stack">
+            <span class="ptag">Python</span><span class="ptag">Pandas</span><span class="ptag">Power BI</span><span class="ptag">Excel</span>
+          </div>
+          <a href="https://github.com/thanigasalam" target="_blank" class="project-link">View ↗</a>
+        </div>
+      </div>
+
+      <div class="project-card glass">
+        <div class="project-num">Project 02</div>
+        <div class="project-title">COVID-19 Global Trend Analysis</div>
+        <div class="project-desc">End-to-end EDA on 1M+ row COVID-19 dataset from Our World in Data. Visualised daily cases, mortality rates, and vaccination trends across 15 countries with 7-day rolling average smoothing.</div>
+        <div class="project-metrics">
+          <span class="metric">1M+ rows processed</span>
+          <span class="metric">8 publication charts</span>
+        </div>
+        <div class="project-footer">
+          <div class="project-stack">
+            <span class="ptag">Python</span><span class="ptag">Seaborn</span><span class="ptag">Matplotlib</span><span class="ptag">Jupyter</span>
+          </div>
+          <a href="https://github.com/thanigasalam" target="_blank" class="project-link">View ↗</a>
+        </div>
+      </div>
+
+      <div class="project-card glass">
+        <div class="project-num">Project 03</div>
+        <div class="project-title">SQL-Based HR Attrition Analysis</div>
+        <div class="project-desc">Designed and queried an HR database of 1,470 employees using 25+ advanced SQL queries with JOINs, window functions, CTEs, and subqueries. Generated structured KPI reports for stakeholders.</div>
+        <div class="project-metrics">
+          <span class="metric">1,470 employee records</span>
+          <span class="metric">45% faster analysis</span>
+        </div>
+        <div class="project-footer">
+          <div class="project-stack">
+            <span class="ptag">MySQL</span><span class="ptag">SQL</span><span class="ptag">Excel</span>
+          </div>
+          <a href="https://github.com/thanigasalam" target="_blank" class="project-link">View ↗</a>
+        </div>
+      </div>
+
+      <div class="project-card glass">
+        <div class="project-num">Project 04</div>
+        <div class="project-title">Zomato Restaurant Data Analysis</div>
+        <div class="project-desc">Cleaned and analysed 10,000+ row Zomato dataset, handling 18% missing values through imputation and outlier removal. Feature-engineered price tier and rating band columns with correlation analysis.</div>
+        <div class="project-metrics">
+          <span class="metric">10,000+ rows</span>
+          <span class="metric">10 Seaborn charts</span>
+        </div>
+        <div class="project-footer">
+          <div class="project-stack">
+            <span class="ptag">Python</span><span class="ptag">Pandas</span><span class="ptag">Seaborn</span><span class="ptag">NumPy</span>
+          </div>
+          <a href="https://github.com/thanigasalam" target="_blank" class="project-link">View ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="reveal">
+    <div class="section-tag">04 — Certifications</div>
+    <h2>Always learning</h2>
+    <div class="cert-grid">
+      <div class="cert-card glass2">
+        <div class="cert-issuer">Certified Course</div>
+        <div class="cert-name">Data Analyst Course — Python, SQL, Power BI, Tableau, ML, ETL</div>
+        <div class="cert-year">2024 – 2025</div>
+      </div>
+      <div class="cert-card glass2">
+        <div class="cert-issuer">LinkedIn Learning</div>
+        <div class="cert-name">Career Skills in Data Analytics</div>
+        <div class="cert-year">2024</div>
+      </div>
+      <div class="cert-card glass2">
+        <div class="cert-issuer">LinkedIn Learning</div>
+        <div class="cert-name">Business Analysis Foundation</div>
+        <div class="cert-year">2024</div>
+      </div>
+      <div class="cert-card glass2">
+        <div class="cert-issuer">Foundation</div>
+        <div class="cert-name">Fundamentals of Computers — Windows & MS Office</div>
+        <div class="cert-year">2022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal contact-center">
+    <div class="section-tag">05 — Contact</div>
+    <h2>Let's connect</h2>
+    <p>I'm actively looking for Data Analyst and BI roles. If you have an opportunity or just want to talk data — reach out!</p>
+    <a href="mailto:thanigas50@gmail.com" class="contact-email">thanigas50@gmail.com</a>
+    <div class="social-row">
+      <a href="https://linkedin.com/in/thanigasalam" target="_blank" class="btn btn-primary">LinkedIn ↗</a>
+      <a href="https://github.com/thanigasalam" target="_blank" class="btn btn-glass">GitHub ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Thanigasalam M</span>
+  <span>Villupuram, Tamil Nadu · Built with care</span>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
